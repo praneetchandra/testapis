@@ -1,0 +1,22 @@
+version: '2'
+services:
+  api:
+    container_name: "bs2"
+    build:
+      context: ""
+      args:
+        TENANT: $TENANT
+        STAGE: $STAGE
+        REDSHIFT_USERNAME: $REDSHIFT_USERNAME
+        REDSHIFT_PASSWORD: $REDSHIFT_PASSWORD
+        REDSHIFT_HOST: $REDSHIFT_HOST
+        REDSHIFT_PORT: $REDSHIFT_PORT
+        REDSHIFT_IAM_ROLE: $REDSHIFT_IAM_ROLE
+    volumes:
+      - ./service/:/service/.
+      - $HOME/.aws:/root/.aws
+    ports:
+     - "8080:8080"
+    environment:
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_REGION: $AWS_REGION
